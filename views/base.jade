@@ -1,0 +1,11 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		title= title || 'lingo'
+		link(rel='stylesheet', href='/style/css/main.css')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+		script(src='/js/main.js')
+	body
+		block content

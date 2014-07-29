@@ -1,0 +1,34 @@
+{
+  "name": "lingo",
+  "dependencies": {
+    "express": "^4.6.1",
+    "body-parser": "^1.5.2",
+    "jade": "^1.5.0",
+    "lodash-node": "^2.4.1",
+    "mongoose": "^3.8.14"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.3"
+  },
+  "version": "0.0.0",
+  "license": "ISC",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastiansandqvist/lingo"
+  },
+  "keywords": [
+    "refactoru"
+  ],
+  "author": "sebastian sandqvist",
+  "bugs": {
+    "url": "https://github.com/sebastiansandqvist/lingo/issues"
+  },
+  "homepage": "https://github.com/sebastiansandqvist/lingo"
+}

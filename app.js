@@ -14,7 +14,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-  	console.log(accessToken, refreshToken, profile, done);
+  	console.log(profile, done);
   	// create a user here or log them in
     // User.findOrCreate(..., function(err, user) {
     //   if (err) { return done(err); }

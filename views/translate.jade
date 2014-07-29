@@ -1,0 +1,18 @@
+extends base
+
+block content
+	form(action='/translate' method='post')
+		select
+			option(value='from language' disabled)
+			option(value='english') english
+			option(value='japanese') japanese
+			option(value='spanish') spanish
+			option(value='swedish') swedish
+		select
+			option(value='to language' disabled)
+			option(value='english') english
+			option(value='japanese') japanese
+			option(value='spanish') spanish
+			option(value='swedish') swedish
+		input(type='text' placeholder='word to translate')
+		button(type='submit') translate

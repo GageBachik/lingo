@@ -11,7 +11,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
     clientID: '332743610214109',
     clientSecret: 'cbcdc673a23db1baff5c117ebafb6404',
-    callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/callback"
+    callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
   },
   function(accessToken, refreshToken, profile, done) {
   	console.log(profile, done);
@@ -60,7 +60,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 	// authentication process by attempting to obtain an access token.  If
 	// access was granted, the user will be logged in.  Otherwise,
 	// authentication has failed.
-	app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
+	app.get('/auth/facebook/authed', passport.authenticate('facebook', { 
 		successRedirect: '/',
 		failureRedirect: '/login' 
 	}));

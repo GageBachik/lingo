@@ -7,7 +7,7 @@ var controller = require('./controllers/controller.js');
 // ----- mongodb via mongoose
 // ---------------------------------------
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/lingo');
+mongoose.connect('mongodb://admin:password@ds059908.mongolab.com:59908/lingo');
 
 
 // ----- set view engine to jade in /views

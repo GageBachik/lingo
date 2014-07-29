@@ -1,6 +1,8 @@
 var controller = {
 	index: function(req, res) {
-		
+		res.render('index', {
+			title: 'lingo'
+		})
 	},
 	progress: function(req, res) {
 		res.render('progress', {

@@ -11,9 +11,10 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
     clientID: '332743610214109',
     clientSecret: 'cbcdc673a23db1baff5c117ebafb6404',
-    callbackURL: "http://www.example.com/auth/facebook/callback"
+    callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+  	console.log(accessToken, refreshToken, profile, done);
   	// create a user here or log them in
     // User.findOrCreate(..., function(err, user) {
     //   if (err) { return done(err); }

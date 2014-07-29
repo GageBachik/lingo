@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 // ----- mongodb via mongoose
 // ---------------------------------------

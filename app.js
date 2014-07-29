@@ -27,7 +27,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // ----- routes
 // ---------------------------------------
-app.get('/', controller.index);
+app.get('/', function(req, res) {
+	res.render('index', {
+			title: 'lingo'
+		})
+	}
+);
 
 // ----- create server
 // 		--	on port 3000

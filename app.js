@@ -16,11 +16,10 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
   },
   function(accessToken, refreshToken, profile, done) {
-  	console.log(profile.displayName, profile.id, profile);
 
   	User.findOneOrCreate({fbId: profile.id}, {
   		name: profile.displayName,
-  		fbId: profile.name.id,
+  		fbId: profile.id,
   		stats: {
   			totalQuizzesTaken: 0,
   			quizzesPassed: 0,

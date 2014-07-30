@@ -34,7 +34,7 @@ passport.use(new FacebookStrategy({
   			worstTenWords: []
   		}
   	}, function(err, user){
-  		done(null, user);
+  		// done(null, user);
   	});
   	// create a user here or log them in
     // User.findOrCreate(..., function(err, user) {

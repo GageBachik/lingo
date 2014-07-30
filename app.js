@@ -33,7 +33,7 @@ passport.use(new FacebookStrategy({
   			worstTenWords: []
   		}
   	}, function(err, user){
-  		console.log(user);
+  		done(null, {name: 'Gage'});
   	});
   	// create a user here or log them in
     // User.findOrCreate(..., function(err, user) {

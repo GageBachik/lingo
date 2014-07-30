@@ -85,6 +85,14 @@ app.get('/auth/facebook/authed', passport.authenticate('facebook', {
 	successRedirect: '/',
 	failureRedirect: '/login' 
 }));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 // authentication
 
 

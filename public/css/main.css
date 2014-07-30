@@ -1,4 +1,14 @@
+/* make nighttime editing tolerable */
 body {
-	color: #333;
+	background: #222;
+	color: #fff;
 	padding: 30px;
+}
+
+#translator span {
+	margin: 0 5px;
+}
+
+#translator span:first-child {
+	margin: 0 5px 0 0;
 }

@@ -1,18 +1,16 @@
 extends base
 
 block content
-	form(action='/translate' method='post')
-		select
-			option(value='from language' disabled)
-			option(value='english') english
-			option(value='japanese') japanese
-			option(value='spanish') spanish
-			option(value='swedish') swedish
-		select
-			option(value='to language' disabled)
-			option(value='english') english
-			option(value='japanese') japanese
-			option(value='spanish') spanish
-			option(value='swedish') swedish
-		input(type='text' placeholder='word to translate')
-		button(type='submit') translate
+	form(action='/translate' method='post' id='translator')
+		span translate
+		input(type='text' id='translate-word' placeholder='word to translate')
+		span from
+		select(id="from-language")
+		span to
+		select(id="to-language")
+		button(type='submit' id='translate-submit') translate
+	//- todo: pass translation through as variable 
+	//- and rerender this page if api request is successful
+	h2= translation
+	script(src='/js/translate.js')
+		

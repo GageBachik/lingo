@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 // setup for user creation
 var User = require('./models/users.js');
 
@@ -26,8 +28,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // auth setup
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new FacebookStrategy({
     clientID: '332743610214109',

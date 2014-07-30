@@ -3,6 +3,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
+// setup for user creation
+var findOneOrCreate = require('mongoose-find-one-or-create');
+var User = require('./models/users.js');
 
 // auth setup
 var passport = require('passport');
@@ -14,7 +17,30 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
   },
   function(accessToken, refreshToken, profile, done) {
-  	console.log(profile, done);
+  	console.log(profile.name);
+
+  	User.findOneOrCreate({fbId: profile.name.id}, {
+  		name: profile.displayName,
+  		fbId: profile.name.id,
+  		stats: {
+  			totalQuizzesTaken: 0,
+  			quizzesPassed: 0,
+  			quizzesFailed: 0,
+  			percentPassed: 0,
+  			totalWordsTranslated: 0,
+  			translatedCorrectly: 0,
+  			translatedIncorrectly: 0,
+  			percentTranslated: 0,
+  			bestTenWords: [],
+  			worstTenWords: []
+  		}
+  	}, function(err, user){
+  		if (err) {
+  			done(err);
+  		}else{
+  			done(null, user);
+  		}
+  	});
   	// create a user here or log them in
     // User.findOrCreate(..., function(err, user) {
     //   if (err) { return done(err); }

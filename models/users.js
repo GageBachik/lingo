@@ -5,3 +5,5 @@ var User = mongoose.model('User', {
 	fbId: Number,
 	stats: Object
 })
+
+module.exports = User;

@@ -1,28 +1,14 @@
 // --------------------------------- server ---------------------------------
 var express = require('express');
+var session = require('express-session')
 var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
-
-// auth setup
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+// setup for user creation
+var User = require('./models/users.js');
 
-passport.use(new FacebookStrategy({
-    clientID: '332743610214109',
-    clientSecret: 'cbcdc673a23db1baff5c117ebafb6404',
-    callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
-  },
-  function(accessToken, refreshToken, profile, done) {
-  	console.log(profile, done);
-  	// create a user here or log them in
-    // User.findOrCreate(..., function(err, user) {
-    //   if (err) { return done(err); }
-    //   done(null, user);
-    // });
-  }
-));
-// end auth setup
 // ----- mongodb via mongoose
 // ---------------------------------------
 var mongoose = require('mongoose');
@@ -42,6 +28,41 @@ app.use(express.static(__dirname + '/public'));
 // ---------------------------------------
 app.use(bodyParser.urlencoded({extended: false}));
 
+// auth setup
+app.use(session({secret: 'keyboard cat'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new FacebookStrategy({
+    clientID: '332743610214109',
+    clientSecret: 'cbcdc673a23db1baff5c117ebafb6404',
+    callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
+  },
+  function(accessToken, refreshToken, profile, done) {
+
+  	User.findOneOrCreate({fbId: profile.id}, {
+  		name: profile.displayName,
+  		fbId: profile.id,
+  		stats: {
+  			totalQuizzesTaken: 0,
+  			quizzesPassed: 0,
+  			quizzesFailed: 0,
+  			percentPassed: 0,
+  			totalWordsTranslated: 0,
+  			translatedCorrectly: 0,
+  			translatedIncorrectly: 0,
+  			percentTranslated: 0,
+  			bestTenWords: [],
+  			worstTenWords: []
+  		}
+  	}, function(err, user){
+  		if (err) { return done(err); }
+  		done(null, user);
+  	})
+  }
+));
+// end auth setup
+
 // ----- routes
 // ---------------------------------------
 app.get('/', controller.index);
@@ -53,17 +74,25 @@ app.get('/progress', controller.progress);
 // authentication
 	// Redirect the user to Facebook for authentication.  When complete,
 	// Facebook will redirect the user back to the application at
-	//     /auth/facebook/callback
+	//     /auth/facebook/authed
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-	// Facebook will redirect the user to this URL after approval.  Finish the
-	// authentication process by attempting to obtain an access token.  If
-	// access was granted, the user will be logged in.  Otherwise,
-	// authentication has failed.
-	app.get('/auth/facebook/authed', passport.authenticate('facebook', { 
-		successRedirect: '/',
-		failureRedirect: '/login' 
-	}));
+// Facebook will redirect the user to this URL after approval.  Finish the
+// authentication process by attempting to obtain an access token.  If
+// access was granted, the user will be logged in.  Otherwise,
+// authentication has failed.
+app.get('/auth/facebook/authed', passport.authenticate('facebook', { 
+	successRedirect: '/',
+	failureRedirect: '/login' 
+}));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 // authentication
 
 

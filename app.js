@@ -4,7 +4,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
 // setup for user creation
-var findOneOrCreate = require('mongoose-find-one-or-create');
 var User = require('./models/users.js');
 
 // auth setup
@@ -36,7 +35,7 @@ passport.use(new FacebookStrategy({
   		}
   	}, function(err, user){
   		if (err) {
-  			done(err);
+  			done(err, user);
   		}else{
   			done(null, user);
   		}

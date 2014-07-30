@@ -16,9 +16,9 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
   },
   function(accessToken, refreshToken, profile, done) {
-  	console.log(profile.displayName, profile.name.id);
+  	console.log(profile.displayName, profile.id, profile);
 
-  	User.findOneOrCreate({fbId: profile.name.id}, {
+  	User.findOneOrCreate({fbId: profile.id}, {
   		name: profile.displayName,
   		fbId: profile.name.id,
   		stats: {
@@ -34,7 +34,7 @@ passport.use(new FacebookStrategy({
   			worstTenWords: []
   		}
   	}, function(err, user){
-  		// done(null, user);
+  		console.log(user);
   	});
   	// create a user here or log them in
     // User.findOrCreate(..., function(err, user) {

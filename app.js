@@ -1,5 +1,6 @@
 // --------------------------------- server ---------------------------------
 var express = require('express');
+var session = require('express-session')
 var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
@@ -28,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // auth setup
-app.use(session({secret: 'keyboard cat'}))
+app.use(session({secret: 'keyboard cat'}));
 app.use(passport.initialize());
 app.use(passport.session());
 

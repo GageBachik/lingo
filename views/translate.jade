@@ -1,14 +1,14 @@
 extends base
 
 block content
-	form(action='/translate' method='post' id='translator')
+	form#translator(action='/translate' method='post')
 		span translate
-		input(type='text' id='translate-word' placeholder='word to translate')
+		input#translate-word(type='text' placeholder='word to translate')
 		span from
-		select(id="from-language")
+		select#from-language
 		span to
-		select(id="to-language")
-		button(type='submit' id='translate-submit') translate
+		select#to-language
+		button#translate-submit(type='submit') translate
 	//- todo: pass translation through as variable 
 	//- and rerender this page if api request is successful
 	h2= translation

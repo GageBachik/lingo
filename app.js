@@ -6,6 +6,25 @@ var controller = require('./controllers/controller.js');
 // setup for user creation
 var User = require('./models/users.js');
 
+// ----- mongodb via mongoose
+// ---------------------------------------
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://admin:password@ds059908.mongolab.com:59908/lingo');
+
+
+// ----- set view engine to jade in /views
+// ---------------------------------------
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
+
+// ----- static files in /public
+// ---------------------------------------
+app.use(express.static(__dirname + '/public'));
+
+// ----- parse form body as json
+// ---------------------------------------
+app.use(bodyParser.urlencoded({extended: false}));
+
 // auth setup
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -39,24 +58,6 @@ passport.use(new FacebookStrategy({
   }
 ));
 // end auth setup
-// ----- mongodb via mongoose
-// ---------------------------------------
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:password@ds059908.mongolab.com:59908/lingo');
-
-
-// ----- set view engine to jade in /views
-// ---------------------------------------
-app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
-
-// ----- static files in /public
-// ---------------------------------------
-app.use(express.static(__dirname + '/public'));
-
-// ----- parse form body as json
-// ---------------------------------------
-app.use(bodyParser.urlencoded({extended: false}));
 
 // ----- routes
 // ---------------------------------------

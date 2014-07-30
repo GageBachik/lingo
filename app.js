@@ -28,7 +28,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // auth setup
+app.use(session({secret: 'keyboard cat'}))
 app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new FacebookStrategy({
     clientID: '332743610214109',

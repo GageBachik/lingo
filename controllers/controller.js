@@ -9,10 +9,17 @@ console.log(beglobal);
 var controller = {
 
 	index: function(req, res) {
-		console.log('login info',req, req.user);
-		res.render('index', {
-			title: 'lingo'
-		})
+		// call req.user to get all user info at any time! O.o
+		// console.log('login info',req, req.user);
+		// check for login
+		if (req.user){
+			res.render('index', {
+				title: 'lingo'
+			})
+		}else{
+			res.redirect('/login');
+		}
+		
 	},
 
 	progress: function(req, res) {

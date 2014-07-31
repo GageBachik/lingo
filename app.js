@@ -4,6 +4,7 @@ var session = require('express-session')
 var app = express();
 var bodyParser = require('body-parser');
 var controller = require('./controllers/controller.js');
+var quiz = require('./controllers/quiz.js');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 // setup for user creation
@@ -59,7 +60,11 @@ passport.use(new FacebookStrategy({
   			percentTranslated: 0,
   			bestTenWords: [],
   			worstTenWords: []
-  		}
+  		},
+      currentQuiz: {
+        amountIncorrect: 0,
+        questionNumber: 1
+      }
   	},
   	function(err, user){
   		if (err) { return done(err); }
@@ -77,6 +82,17 @@ app.get('/quiz', controller.quiz);
 app.get('/translate', controller.translator);
 app.post('/translate', controller.translate);
 app.get('/progress', controller.progress);
+
+
+// quiz api
+//get a question
+app.get('/quiz/getQuestion/:toLang/:fromLang', quiz.getQuestion);
+// check if answer is correct
+app.post('/quiz/isCorrect/:user/:answer', quiz.answer);
+
+// user api
+// update users stats
+// app.post('/user/:user/');
 
 // authentication
 	// Redirect the user to Facebook for authentication.  When complete,

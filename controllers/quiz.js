@@ -21,7 +21,7 @@ var quiz = {
 					deferred.reject(new Error(error));
 				}
 				else {
-					deferred.reslove(results.translation);
+					deferred.resolve(results.translation);
 				}
 			});
 

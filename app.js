@@ -63,7 +63,8 @@ passport.use(new FacebookStrategy({
   		},
       currentQuiz: {
         amountIncorrect: 0,
-        questionNumber: 1
+        questionNumber: 1,
+        answer: ''
       }
   	},
   	function(err, user){

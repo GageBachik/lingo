@@ -14,10 +14,13 @@ var controller = {
 			title: 'quiz'
 		})
 	},
-	translate: function(req, res) {
+	translator: function(req, res) {
 		res.render('translate', {
 			title: 'translate'
 		})
+	},
+	translate: function(req, res) {
+		console.log(req.body)
 	},
 	login: function(req, res) {
 		res.render('login', {

@@ -29,7 +29,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 // auth setup
-app.use(session({secret: 'keyboard cat'}));
+app.use(session({
+	secret: 'keyboard cat',
+	resave: true,
+	saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -68,7 +72,8 @@ passport.use(new FacebookStrategy({
 app.get('/', controller.index);
 app.get('/login', controller.login);
 app.get('/quiz', controller.quiz);
-app.get('/translate', controller.translate);
+app.get('/translator', controller.translator);
+app.post('/translate', controller.translate);
 app.get('/progress', controller.progress);
 
 // authentication

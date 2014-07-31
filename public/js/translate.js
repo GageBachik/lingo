@@ -156,10 +156,10 @@ $(function() {
 	$('#from-language').change(translate.makeToOptions);
 
 	// dev stuff for testing. will remove.
-	$('#translate-submit').click(function(e) {
-		var formData = 'WORD: ' + $('#translate-word').val() + '\nFROM: ' + $('#from-language').val() + '\nTO: ' + $('#to-language').val()
-		alert(formData)
-		e.preventDefault();
-	});
+	// $('#translate-submit').click(function(e) {
+	// 	var formData = 'WORD: ' + $('#translate-word').val() + '\nFROM: ' + $('#from-language').val() + '\nTO: ' + $('#to-language').val()
+	// 	alert(formData)
+	// 	e.preventDefault();
+	// });
 
 });

@@ -1,6 +1,5 @@
 var wordList = ['time', 'person', 'year', 'way', 'day', 'thing', 'man', 'world', 'life', 'hand', 'part', 'child', 'eye', 'woman', 'place', 'work', 'week', 'case', 'point', 'government', 'company', 'number', 'group', 'problem', 'fact', 'be', 'have', 'do', 'say', 'get', 'make', 'go', 'know', 'take', 'see', 'come', 'think', 'look', 'want', 'give', 'use', 'find', 'tell', 'ask', 'work', 'seem', 'feel', 'try', 'leave', 'call', 'good', 'new', 'first', 'last', 'long', 'great', 'little', 'own', 'other', 'old', 'right', 'big', 'high', 'different', 'small', 'large', 'next', 'early', 'young', 'important', 'few', 'public', 'bad', 'same', 'able'];
 var Q = require('q');
-var deferred = Q.defer();
 var BeGlobal = require('node-beglobal');
 var beglobal = new BeGlobal.BeglobalAPI({
 	api_token: 'oHXJOmw0m6ko6yR6%2BmTImg%3D%3D'
@@ -8,8 +7,9 @@ var beglobal = new BeGlobal.BeglobalAPI({
 
 var quiz = {
 	getQuestion: function(req, res){
+		var deferred = Q.defer();
 		var randomWord = wordList[Math.round(Math.random()*(wordList.length-1))];
-		console.log(randomWord);
+		console.log('randomWord',randomWord);
 		if (req.params.fromLang === 'eng') {
 			//translate a word
 			beglobal.translations.translate({
@@ -23,13 +23,17 @@ var quiz = {
 				}
 				else {
 					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-					deferred.resolve(results.translation.toLowerCase());
+					if (results.translation.toLowerCase() === randomWord) {
+						this.getQuestion(req,res);
+					}else{
+						deferred.resolve(results.translation.toLowerCase());
+					}
 				}
 			});
 
 			deferred.promise.then(function(value){
-				console.log("sent translation:");
-				res.send({translation: results.translation.toLowerCase()});
+				console.log('value;', value);
+				res.send({translation: value});
 			}, function(error){
 				res.send(error);
 			});
@@ -45,7 +49,11 @@ var quiz = {
 				}
 				else {
 					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-					deferred.resolve(results.translation.toLowerCase());
+					if (results.translation.toLowerCase() === randomWord) {
+						this.getQuestion(req,res);
+					}else{
+						deferred.resolve(results.translation.toLowerCase());
+					}
 				}
 			});
 

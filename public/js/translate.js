@@ -155,6 +155,18 @@ $(function() {
 	// change toOptions when fromLang changes
 	$('#from-language').change(translate.makeToOptions);
 
+
+	$('#translator').submit(function(e) {
+
+		e.preventDefault();
+
+		$.post('/translate', $(this).serialize(), function(data) {
+
+			// $
+
+		});
+
+	});
 	// dev stuff for testing. will remove.
 	// $('#translate-submit').click(function(e) {
 	// 	var formData = 'WORD: ' + $('#translate-word').val() + '\nFROM: ' + $('#from-language').val() + '\nTO: ' + $('#to-language').val()

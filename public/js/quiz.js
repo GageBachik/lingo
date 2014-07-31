@@ -12,6 +12,9 @@ var accentMap = {
 	z: ['z', 'ž', 'ź', 'ż']
 }
 
+// helper function used in compareEqualArrays
+// - tells if letters are different because of an accent (true)
+//   or actually different letters (false)
 function isAccent(letter, correctLetter) {
 
 	var letter        = letter.toLowerCase();
@@ -36,6 +39,12 @@ function isAccent(letter, correctLetter) {
 
 }
 
+// helper function used in CompareStrings
+// - compares arrayified strings of the same length
+// 	 - returns true if ===
+// 	 - returns false if more than 1 mistake
+//	 - returns letter of mistake if 1 mistake
+//	 - returns message if 1 mistake && mistake is accent
 function compareEqualArrays(arrayA, arrayB, hasAlreadyMessedUp) {
 
 	var hasAlreadyMessedUp = hasAlreadyMessedUp || false;
@@ -61,6 +70,10 @@ function compareEqualArrays(arrayA, arrayB, hasAlreadyMessedUp) {
 		return true
 }
 
+// compares 2 strings
+// - makes strings into arrays of equal length,
+//   then runs compareEqualArrays() on them
+// - tolerates 1 mistake, with custom return
 function compareStrings(a,b) {
 
 	var arrayA = a.toLowerCase().split('');
@@ -76,6 +89,7 @@ function compareStrings(a,b) {
 
 	}
 
+	//todo: refactor this and next else if to be one statement
 	else if (arrayA.length - arrayB.length === 1) {
 
 		for (var i = 0; i < arrayA.length; i++) {

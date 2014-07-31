@@ -8,7 +8,8 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
 	name: String,
 	fbId: Number,
-	stats: Object
+	stats: Object,
+	currentQuiz: Object
 });
 
 UserSchema.plugin(findOneOrCreate);

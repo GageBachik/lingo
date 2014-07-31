@@ -28,12 +28,43 @@ var quiz = {
 			});
 
 			deferred.promise.then(function(value){
-				console.log("value:", value);
+				res.send({translation: results.translation});
+			}, function(error){
+				res.send(error);
+			});
+		}else{
+			beglobal.translations.translate({
+				text: randomWord,
+				from: eng,
+				to: req.params.fromLang
+			},
+			function(err, results) {
+				if (err) {
+					deferred.reject(new Error(error));
+				}
+				else {
+					console.log("results.translation:", results.translation);
+					deferred.resolve(results.translation);
+				}
+			});
+
+			deferred.promise.then(function(value){
+				beglobal.translations.translate({
+					text: value,
+					from: req.params.fromLang,
+					to: req.params.toLang
+				},
+				function(err, results) {
+					if (err) {
+						res.render('error');
+					}
+					else {
+						res.render({translation: results.translation});
+					}
+				});
 			}, function(error){
 				console.log("error:", error);
 			});
-		}else{
-			console.log("error")
 		}
 	},
 	answer: function(req, res){

@@ -6,7 +6,7 @@ var beglobal = new BeGlobal.BeglobalAPI({
 
 var quiz = {
 	getQuestion: function(req, res){
-		console.log(req.body);
+		console.log(req);
 		//translate a word
 		beglobal.translations.translate({
 			text: req.body.text,
@@ -18,7 +18,7 @@ var quiz = {
 				return console.log(err)
 			}
 			else {
-				res.send({ translation: results.translation });
+				// res.send({ translation: results.translation });
 			}
 		});
 	},

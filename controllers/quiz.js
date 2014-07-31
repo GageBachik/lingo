@@ -31,7 +31,7 @@ var quiz = {
 				console.log("error:", error);
 			});
 		}else{
-
+			console.log("error")
 		}
 	},
 	answer: function(req, res){

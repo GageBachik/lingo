@@ -9,7 +9,7 @@ var beglobal = new BeGlobal.BeglobalAPI({
 var quiz = {
 	getQuestion: function(req, res){
 		var randomWord = wordList[Math.round(Math.random()*(wordList.length-1))];
-		console.log(randomWord);
+		console.log('randomWord',randomWord);
 		if (req.params.fromLang === 'eng') {
 			//translate a word
 			beglobal.translations.translate({

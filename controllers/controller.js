@@ -9,6 +9,7 @@ console.log(beglobal);
 var controller = {
 
 	index: function(req, res) {
+		console.log('login info',req, req.user);
 		res.render('index', {
 			title: 'lingo'
 		})

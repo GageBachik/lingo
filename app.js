@@ -72,7 +72,7 @@ passport.use(new FacebookStrategy({
 app.get('/', controller.index);
 app.get('/login', controller.login);
 app.get('/quiz', controller.quiz);
-app.get('/translator', controller.translator);
+app.get('/translate', controller.translator);
 app.post('/translate', controller.translate);
 app.get('/progress', controller.progress);
 

@@ -31,8 +31,8 @@ var quiz = {
 				}
 			});
 
-			deferred.promise.then(function(translation){
-				res.send({translation: translation});
+			deferred.promise.then(function(value){
+				res.send({translation: value});
 			}, function(error){
 				res.send(error);
 			});

@@ -22,7 +22,7 @@ var quiz = {
 					deferred.reject(new Error(error));
 				}
 				else {
-					console.console.log("results.translation:", results.translation);
+					console.log("results.translation:", results.translation);
 					deferred.resolve(results.translation);
 				}
 			});

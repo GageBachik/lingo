@@ -1,7 +1,7 @@
 extends base
 
 block content
-	form#quiz(action='/quiz', method='post')
+	form#quiz(action='/???', method='post')
 		//- addClass 'failed' if wrong
 		h2#quiz-question {word to translate}
 		input(type='text', placeholder='translation')
@@ -9,7 +9,7 @@ block content
 
 		ul#quizinfo
 			li#attempts 3 attempts remaining 
-			li#questions 10 questions remaining
+			li#questions current question: 1/10
 
 block scripts
 	script(src='/js/quiz.js')

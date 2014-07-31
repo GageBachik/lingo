@@ -32,6 +32,16 @@ var controller = {
 		})
 	},
 
+	newQuiz: function(req, res) {
+		res.redirect('/quiz');
+	},
+
+	startQuiz: function(req, res) {
+		res.render('start-quiz', {
+			title: 'new quiz'
+		})
+	},
+
 	translator: function(req, res) {
 		res.render('translate', {
 			title: 'translate'

@@ -32,6 +32,7 @@ var quiz = {
 			});
 
 			deferred.promise.then(function(value){
+				console.log('lol', value);
 				console.log("sent translation:", {translation: results.translation.toLowerCase()});
 				res.send({translation: results.translation.toLowerCase()});
 			}, function(error){

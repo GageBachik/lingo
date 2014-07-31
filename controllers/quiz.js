@@ -23,12 +23,16 @@ var quiz = {
 				}
 				else {
 					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-					deferred.resolve(results.translation.toLowerCase());
+					if (results.translation.toLowerCase() === randomWord) {
+						this.getQuestion(req,res);
+					}else{
+						deferred.resolve(results.translation.toLowerCase());
+					}
 				}
 			});
 
 			deferred.promise.then(function(value){
-				console.log("sent translation:");
+				console.log("sent translation:", {translation: results.translation.toLowerCase()});
 				res.send({translation: results.translation.toLowerCase()});
 			}, function(error){
 				res.send(error);
@@ -45,7 +49,11 @@ var quiz = {
 				}
 				else {
 					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-					deferred.resolve(results.translation.toLowerCase());
+					if (results.translation.toLowerCase() === randomWord) {
+						this.getQuestion(req,res);
+					}else{
+						deferred.resolve(results.translation.toLowerCase());
+					}
 				}
 			});
 

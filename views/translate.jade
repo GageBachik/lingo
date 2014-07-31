@@ -13,3 +13,19 @@ block content
 
 block scripts
 	script(src='/js/translate.js')
+	script.
+		$(function() {
+			// ajax
+			$('#translator').submit(function(e) {
+
+				e.preventDefault();
+
+				$.post('/translate', $(this).serialize(), function(data) {
+					console.log(data)
+					$('#result').text(data.translation)
+
+				});
+
+			});
+			
+		});

@@ -1,21 +1,7 @@
 extends base
 
 block content
-	h3 what language would you like to study?
 	form#quiz(action='/quiz', method='post')
-		//- todo: populate dynamically
-		select
-			//- use '--' to force user to change selection 
-			option(selected) --
-			option(value='eng') english
-			option(value='fra') french
-			option(value='ger') german
-			option(value='rus') russian
-			option(value='spa') spanish
-		//- todo: append after above option is selected
-		//- & what happens if a user switches languages mid-quiz?
-		//- (could hide <select> after selection is made)
-
 		//- addClass 'failed' if wrong
 		h2#quiz-question {word to translate}
 		input(type='text', placeholder='translation')
@@ -24,11 +10,6 @@ block content
 		ul#quizinfo
 			li#attempts 3 attempts remaining 
 			li#questions 10 questions remaining
+
 block scripts
-	script(src='/js/translate.js')
 	script(src='/js/quiz.js')
-	//- just for testing...
-	script.
-		$('h2').click(function() {
-			$(this).toggleClass('failed')
-		})

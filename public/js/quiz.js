@@ -117,3 +117,11 @@ function compareStrings(a,b) {
 	}
 
 }
+
+$(function() {
+	
+	$('h2').click(function() {
+			$(this).toggleClass('failed')
+		})
+
+});

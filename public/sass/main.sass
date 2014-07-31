@@ -15,8 +15,30 @@ h2
 	&.failed
 		background: #622
 	
-#translator span
+form span
 	margin: 0 5px
 
 	&:first-child
 		margin: 0 5px 0 0
+
+%inputs
+	border: 0
+	border-radius: 3px
+	outline: 0
+	padding: 5px 10px
+	
+button
+	@extend %inputs
+	background: #3498db
+	color: #fff
+	margin: 0 0 0 5px
+
+input
+	@extend %inputs
+	background: #fff
+	border: 2px solid #222
+	color: #444
+	min-width: 200px
+
+	&:focus
+		border-color: #3498db

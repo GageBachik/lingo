@@ -1,7 +1,7 @@
 var wordList = ['time', 'person', 'year', 'way', 'day', 'thing', 'man', 'world', 'life', 'hand', 'part', 'child', 'eye', 'woman', 'place', 'work', 'week', 'case', 'point', 'government', 'company', 'number', 'group', 'problem', 'fact', 'be', 'have', 'do', 'say', 'get', 'make', 'go', 'know', 'take', 'see', 'come', 'think', 'look', 'want', 'give', 'use', 'find', 'tell', 'ask', 'work', 'seem', 'feel', 'try', 'leave', 'call', 'good', 'new', 'first', 'last', 'long', 'great', 'little', 'own', 'other', 'old', 'right', 'big', 'high', 'different', 'small', 'large', 'next', 'early', 'young', 'important', 'few', 'public', 'bad', 'same', 'able'];
 var Q = require('q');
 var mongoose = require('mongoose');
-var User = require('./models/users.js');
+var User = require('../models/users.js');
 var BeGlobal = require('node-beglobal');
 var beglobal = new BeGlobal.BeglobalAPI({
 	api_token: 'oHXJOmw0m6ko6yR6%2BmTImg%3D%3D'

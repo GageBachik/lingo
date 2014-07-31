@@ -22,13 +22,14 @@ var quiz = {
 					deferred.reject(new Error(error));
 				}
 				else {
-					console.log("results.translation:", results.translation);
-					deferred.resolve(results.translation);
+					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
+					deferred.resolve(results.translation.toLowerCase());
 				}
 			});
 
 			deferred.promise.then(function(value){
-				res.send({translation: results.translation});
+				console.log("sent translation:");
+				res.send({translation: results.translation.toLowerCase()});
 			}, function(error){
 				res.send(error);
 			});
@@ -43,8 +44,8 @@ var quiz = {
 					deferred.reject(new Error(error));
 				}
 				else {
-					console.log("results.translation:", results.translation);
-					deferred.resolve(results.translation);
+					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
+					deferred.resolve(results.translation.toLowerCase());
 				}
 			});
 
@@ -56,10 +57,10 @@ var quiz = {
 				},
 				function(err, results) {
 					if (err) {
-						res.render('error');
+						res.send('error');
 					}
 					else {
-						res.render({translation: results.translation});
+						res.send({translation: results.translation.toLowerCase()});
 					}
 				});
 			}, function(error){

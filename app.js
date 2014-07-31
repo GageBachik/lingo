@@ -42,7 +42,7 @@ app.use(passport.session());
 passport.use(new FacebookStrategy({
     clientID: '332743610214109',
     clientSecret: 'cbcdc673a23db1baff5c117ebafb6404',
-    callbackURL: "http://lingo-refactoru.herokuapp.com/auth/facebook/authed"
+    callbackURL: "http://"+process.cwd()+"/auth/facebook/authed"
   },
   function(accessToken, refreshToken, profile, done) {
 

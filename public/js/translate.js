@@ -22,30 +22,28 @@ overall:
 	- makeToOptions populates <select id="to-language">
 			but changes every time the from language changes
 
-	todo: alphabetize langsData into new array, then delete original langsData
-
 */
 
 
 // helper function to sort alphabetically
 // not called anywhere, used it manually
-function sorter(array) {
+// function sorter(array) {
 
-	return JSON.stringify(array.sort(function(a,b) {
+// 	return JSON.stringify(array.sort(function(a,b) {
 
-		if (a[0].name === b[0].name) {
-			return 0
-		}
-		else if(a[0].name > b[0].name) {
-			return 1
-		}
-		else if (a[0].name < b[0].name) {
-			return -1
-		}
+// 		if (a[0].name === b[0].name) {
+// 			return 0
+// 		}
+// 		else if(a[0].name > b[0].name) {
+// 			return 1
+// 		}
+// 		else if (a[0].name < b[0].name) {
+// 			return -1
+// 		}
 
-	}));
+// 	}));
 
-}
+// }
 
 
 var translate = {
@@ -155,8 +153,7 @@ $(function() {
 	// change toOptions when fromLang changes
 	$('#from-language').change(translate.makeToOptions);
 
-
-	// ajax tranlations
+	// ajax
 	$('#translator').submit(function(e) {
 
 		e.preventDefault();
@@ -168,11 +165,5 @@ $(function() {
 		});
 
 	});
-	// dev stuff for testing. will remove.
-	// $('#translate-submit').click(function(e) {
-	// 	var formData = 'WORD: ' + $('#translate-word').val() + '\nFROM: ' + $('#from-language').val() + '\nTO: ' + $('#to-language').val()
-	// 	alert(formData)
-	// 	e.preventDefault();
-	// });
 
 });

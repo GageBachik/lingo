@@ -28,7 +28,8 @@ app.use(express.static(__dirname + '/public'));
 // ---------------------------------------
 app.use(bodyParser.urlencoded({extended: false}));
 
-// auth setup
+// ----- auth setup
+// ---------------------------------------
 app.use(session({
 	secret: 'keyboard cat',
 	resave: true,
@@ -59,7 +60,8 @@ passport.use(new FacebookStrategy({
   			bestTenWords: [],
   			worstTenWords: []
   		}
-  	}, function(err, user){
+  	},
+  	function(err, user){
   		if (err) { return done(err); }
   		done(null, user);
   	})

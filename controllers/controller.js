@@ -3,20 +3,18 @@ var beglobal = new BeGlobal.BeglobalAPI({
 	api_token: 'oHXJOmw0m6ko6yR6%2BmTImg%3D%3D'
 });
 
-
-console.log(beglobal);
-
 var controller = {
 
 	index: function(req, res) {
 		// call req.user to get all user info at any time! O.o
 		// console.log('login info',req, req.user);
 		// check for login
-		if (req.user){
+		if (req.user) {
 			res.render('index', {
 				title: 'lingo'
-			})
-		}else{
+			});
+		}
+		else {
 			res.redirect('/login');
 		}
 		

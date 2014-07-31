@@ -156,13 +156,14 @@ $(function() {
 	$('#from-language').change(translate.makeToOptions);
 
 
+	// ajax tranlations
 	$('#translator').submit(function(e) {
 
 		e.preventDefault();
 
 		$.post('/translate', $(this).serialize(), function(data) {
-
-			// $
+			console.log(data)
+			$('#result').text(data.translation)
 
 		});
 

@@ -47,12 +47,7 @@ var controller = {
 				return console.log(err)
 			}
 			else {
-				res.render('translate', {
-					title: 'translate',
-					// pass translation to jade view
-					// so it can be rendered in <h2>
-					translation: results.translation
-				})
+				res.send({ translation: results.translation });
 			}
 		});
 

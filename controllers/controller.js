@@ -21,15 +21,26 @@ var controller = {
 	},
 
 	progress: function(req, res) {
-		res.render('progress', {
-			title: 'progress'
-		})
+		if (req.user) {
+			res.render('progress', {
+				title: 'progress',
+				user: req.user
+			})
+		}
+		else {
+			res.redirect('/login');
+		}
 	},
 
 	quiz: function(req, res) {
-		res.render('quiz', {
-			title: 'quiz'
-		})
+		if (req.user) {
+			res.render('quiz', {
+				title: 'quiz'
+			})
+		}
+		else {
+			res.redirect('/login');
+		}
 	},
 
 	newQuiz: function(req, res) {
@@ -37,15 +48,25 @@ var controller = {
 	},
 
 	startQuiz: function(req, res) {
-		res.render('start-quiz', {
-			title: 'new quiz'
-		})
+		if (req.user) {
+			res.render('start-quiz', {
+				title: 'new quiz'
+			})
+		}
+		else {
+			res.redirect('/login');
+		}
 	},
 
 	translator: function(req, res) {
-		res.render('translate', {
-			title: 'translate'
-		})
+		if (req.user) {
+			res.render('translate', {
+				title: 'translate'
+			})
+		}
+		else {
+			res.redirect('/login');
+		}
 	},
 
 	translate: function(req, res) {

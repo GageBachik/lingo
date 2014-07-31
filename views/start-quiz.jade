@@ -1,13 +1,12 @@
 extends base
 
 block content
-	form#quiz(action='/quiz', method='post')
+	form#quiz(action='/new-quiz', method='post')
 		h3 what language do you speak?
 		select#from-language
 		h3 what language would you like to study?
 		select#to-language
-
-		button(type='submit') start quiz
+		button.block(type='submit') start quiz
 
 block scripts
 	script(src='/js/translate.js')

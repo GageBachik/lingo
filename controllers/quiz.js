@@ -15,27 +15,21 @@ var quiz = {
 		if (req.params.fromLang === 'eng') {
 			//translate a word
 			// console.log("req.params:", req.params);
-			beglobal.translations.translate({
+			Q.nfcall(beglobal.translations.translate({
 				text: randomWord,
 				from: req.params.fromLang,
 				to: req.params.toLang
-			},
-			function(err, results) {
-				if (err) {
-					deferred.reject(new Error(err));
-				}
-				else {
-					// console.log('results',results);
-					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-					if (results.translation.toLowerCase() === randomWord) {
-						this.getQuestion(req,res);
-					}else{
-						deferred.resolve(results.translation.toLowerCase());
-					}
-				}
-			});
-
-			deferred.promise.then(function(value){
+			})).done(function(results){
+				// console.log('results',results);
+				// console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
+				// if (results.translation.toLowerCase() === randomWord) {
+				// 	this.getQuestion(req,res);
+				// }else{
+				// 	deferred.resolve(results.translation.toLowerCase());
+				// }
+				// deferred.resolve(results.translation.toLowerCase());
+				console.log(results);
+			}).then(function(value){
 				console.log('promise called');
 				// User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
 				// 	console.log("user:", user);

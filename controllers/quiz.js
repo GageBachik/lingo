@@ -14,6 +14,7 @@ var quiz = {
 		console.log('randomWord',randomWord);
 		if (req.params.fromLang === 'eng') {
 			//translate a word
+			console.log("req.params:", req.params);
 			beglobal.translations.translate({
 				text: randomWord,
 				from: req.params.fromLang,

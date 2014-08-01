@@ -30,7 +30,7 @@ var quiz = {
 					if (results.translation.toLowerCase() === randomWord) {
 						this.getQuestion(req,res);
 					}else{
-						deferred.resolve(results.translation.toLowerCase());
+						deferred.resolve(results.translation.toLowerCase);
 					}
 				}
 			});

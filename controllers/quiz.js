@@ -15,11 +15,11 @@ var quiz = {
 		if (req.params.fromLang === 'eng') {
 			//translate a word
 			// console.log("req.params:", req.params);
-			Q.nfcall(beglobal.translations.translate({
+			Q.nfcall(beglobal.translations.translate, {
 				text: randomWord,
 				from: req.params.fromLang,
 				to: req.params.toLang
-			})).then(function(results){
+			}).then(function(results){
 				// console.log('results',results);
 				// console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
 				// if (results.translation.toLowerCase() === randomWord) {

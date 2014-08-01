@@ -35,6 +35,7 @@ var quiz = {
 
 			deferred.promise.then(function(value){
 				User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
+					console.log("user:", user);
 					user.save();
 				});
 				res.send({translation: randomWord});

@@ -6,11 +6,10 @@ var BeGlobal = require('node-beglobal');
 var beglobal = new BeGlobal.BeglobalAPI({
 	api_token: 'oHXJOmw0m6ko6yR6%2BmTImg%3D%3D'
 });
-		var deferred = Q.defer();
-
 
 var quiz = {
 	getQuestion: function(req, res){
+		var deferred = Q.defer();
 		var randomWord = wordList[Math.round(Math.random()*(wordList.length-1))];
 		console.log('randomWord',randomWord);
 		if (req.params.fromLang === 'eng') {
@@ -37,6 +36,7 @@ var quiz = {
 			});
 
 			deferred.promise.then(function(value){
+				console.log('promise called');
 				User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
 					console.log("user:", user);
 					user.save();

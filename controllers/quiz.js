@@ -6,15 +6,16 @@ var BeGlobal = require('node-beglobal');
 var beglobal = new BeGlobal.BeglobalAPI({
 	api_token: 'oHXJOmw0m6ko6yR6%2BmTImg%3D%3D'
 });
+		var deferred = Q.defer();
+
 
 var quiz = {
 	getQuestion: function(req, res){
-		var deferred = Q.defer();
 		var randomWord = wordList[Math.round(Math.random()*(wordList.length-1))];
 		console.log('randomWord',randomWord);
 		if (req.params.fromLang === 'eng') {
 			//translate a word
-			console.log("req.params:", req.params);
+			// console.log("req.params:", req.params);
 			beglobal.translations.translate({
 				text: randomWord,
 				from: req.params.fromLang,
@@ -25,8 +26,8 @@ var quiz = {
 					deferred.reject(new Error(err));
 				}
 				else {
-					console.log('results',results);
-					// console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
+					// console.log('results',results);
+					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
 					if (results.translation.toLowerCase() === randomWord) {
 						this.getQuestion(req,res);
 					}else{

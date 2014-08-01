@@ -32,10 +32,10 @@ var quiz = {
 				return results.translation.toLowerCase();
 			}).then(function(value){
 				console.log('promise called');
-				// User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
-				// 	console.log("user:", user);
-				// 	user.save();
-				// });
+				User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
+					console.log("user:", user);
+					user.save();
+				});
 				res.send({translation: randomWord});
 			}, function(error){
 				res.send(error);

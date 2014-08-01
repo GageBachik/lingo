@@ -44,7 +44,7 @@ var quiz = {
 		}else{
 			beglobal.translations.translate({
 				text: randomWord,
-				from: eng,
+				from: 'eng',
 				to: req.params.fromLang
 			},
 			function(err, results) {

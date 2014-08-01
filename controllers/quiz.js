@@ -19,7 +19,7 @@ var quiz = {
 				text: randomWord,
 				from: req.params.fromLang,
 				to: req.params.toLang
-			})).done(function(results){
+			})).then(function(results){
 				// console.log('results',results);
 				// console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
 				// if (results.translation.toLowerCase() === randomWord) {
@@ -29,6 +29,7 @@ var quiz = {
 				// }
 				// deferred.resolve(results.translation.toLowerCase());
 				console.log(results);
+				return results.translation.toLowerCase();
 			}).then(function(value){
 				console.log('promise called');
 				// User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){

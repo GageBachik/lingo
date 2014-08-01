@@ -15,7 +15,7 @@ var quiz = {
 		if (req.params.fromLang === 'eng') {
 			//translate a word
 			// console.log("req.params:", req.params);
-			Q.nfcall(beglobal.translations.translate, {
+			Q.ninvoke(beglobal.translations, 'translate', {
 				text: randomWord,
 				from: req.params.fromLang,
 				to: req.params.toLang

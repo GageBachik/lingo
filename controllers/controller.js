@@ -22,9 +22,10 @@ var controller = {
 
 	progress: function(req, res) {
 		if (req.user) {
+			console.log(req.user);
 			res.render('progress', {
 				title: 'progress',
-				user: req.user
+				stats: req.user.stats
 			})
 		}
 		else {

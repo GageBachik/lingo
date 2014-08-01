@@ -1,56 +1,39 @@
 extends base
 
 block content
-	h1= user
 	ul.unstyled
 		li
 			.list-head number of quizzes taken: 
-			strong 0
+			strong= stats.totalQuizzesTaken
 		li
 			.list-head number of quizzes passed: 
-			strong 0
+			strong= stats.quizzesPassed
 		li
 			.list-head number of quizzes failed: 
-			strong 0
+			strong= stats.quizzesFailed
 		li
 			.list-head % quizzes passed: 
-			strong 0
+			strong= stats.percentPassed
 		li
 			.list-head total words translated: 
-			strong 0
+			strong= stats.totalWordsTranslated
 		li
 			.list-head total correct translations: 
-			strong 0
+			strong= stats.translatedCorrectly
 		li
 			.list-head total incorrect translations: 
-			strong 0
+			strong= stats.translatedIncorrectly
 		li
 			.list-head % correct translations: 
-			strong 0
+			strong= stats.percentTranslated
 		li
 			.list-head best 10 words
 			ul
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
+				each word in stats.bestTenWords
+					li= word
 		li
 			.list-head worst 10 words
 			ul
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
-				li asd
+				each word in stats.worstTenWords
+					li= word
 		button.block reset all data

@@ -38,12 +38,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-console.log(__dirname);
-console.log(process.cwd());
+
 passport.use(new FacebookStrategy({
     clientID: '332743610214109',
     clientSecret: 'cbcdc673a23db1baff5c117ebafb6404',
-    callbackURL: "http://"+__dirname+"/auth/facebook/authed"
+    callbackURL: "/auth/facebook/authed"
   },
   function(accessToken, refreshToken, profile, done) {
 

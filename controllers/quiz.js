@@ -24,7 +24,8 @@ var quiz = {
 					deferred.reject(new Error(err));
 				}
 				else {
-					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
+					console.log('results',results);
+					// console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
 					if (results.translation.toLowerCase() === randomWord) {
 						this.getQuestion(req,res);
 					}else{

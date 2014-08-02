@@ -8,77 +8,51 @@ var beglobal = new BeGlobal.BeglobalAPI({
 });
 
 var quiz = {
+	getTranslation: function(fromLang, toLang, randomWord){
+		return Q.ninvoke(beglobal.translations, 'translate', {
+			text: randomWord,
+			from: fromLang,
+			to: toLang
+		}).then(function(results){
+			console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
+			if (results.translation.toLowerCase() === randomWord) {
+				// quiz.getQuestion(req,res);
+			}else{
+				return results.translation.toLowerCase();
+			}
+		})
+	},
 	getQuestion: function(req, res){
-		var deferred = Q.defer();
 		var randomWord = wordList[Math.round(Math.random()*(wordList.length-1))];
 		console.log('randomWord',randomWord);
-		if (req.params.fromLang === 'eng') {
-			//translate a word
-			// console.log("req.params:", req.params);
-			Q.ninvoke(beglobal.translations, 'translate', {
-				text: randomWord,
-				from: req.params.fromLang,
-				to: req.params.toLang
-			}).then(function(results){
-				// console.log('results',results);
-				// console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-				// if (results.translation.toLowerCase() === randomWord) {
-				// 	this.getQuestion(req,res);
-				// }else{
-				// 	deferred.resolve(results.translation.toLowerCase());
-				// }
-				// deferred.resolve(results.translation.toLowerCase());
-				console.log(results);
-				return results.translation.toLowerCase();
-			}).then(function(value){
-				console.log('promise called');
-				User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
-					console.log("user:", user);
-					user.save();
+		if (req.params.fromLang === 'eng' /*|| req.params.toLang === 'eng'*/) {
+			quiz.getTranslation('eng', req.params.toLang, randomWord).then(function(value){
+				User.findOneAndUpdate({fbId: req.user.fbId}, {currentQuiz: {answer: value}})
+					.exec()
+					.then(function(value){
+						console.log('Updated User');
 				});
 				res.send({translation: randomWord});
 			}, function(error){
 				res.send(error);
 			});
 		}else{
-			beglobal.translations.translate({
-				text: randomWord,
-				from: 'eng',
-				to: req.params.fromLang
-			},
-			function(err, results) {
-				if (err) {
-					deferred.reject(new Error(err));
-				}
-				else {
-					console.log("results.translation.toLowerCase():", results.translation.toLowerCase());
-					if (results.translation.toLowerCase() === randomWord) {
-						this.getQuestion(req,res);
-					}else{
-						deferred.resolve(results.translation.toLowerCase());
-					}
-				}
-			});
-
-			deferred.promise.then(function(value){
-				beglobal.translations.translate({
-					text: value,
-					from: req.params.fromLang,
-					to: req.params.toLang
-				},
-				function(err, results) {
-					if (err) {
-						res.send('error');
-					}
-					else {
-						User.findOneAndUpdate({fbId: req.User.fbId}, {currentQuiz: {answer: value}},function(err,user){
-							user.save();
-						});
-						res.send({translation: randomWord});
-					}
+			var engPromise = quiz.getTranslation('eng', req.params.fromLang, randomWord);
+			engPromise.then(function(word){
+				console.log('first translation', word);
+				User.findOneAndUpdate({fbId: req.user.fbId}, {currentQuiz: {answer: word}})
+					.exec()
+					.then(function(value){
+						console.log('Updated User');
 				});
+				console.log("word:", word)
+				return quiz.getTranslation(req.params.fromLang, req.params.toLang, word);
+			}).then(function(word){
+				// console.log(req.user);
+				res.send({translation: word});
 			}, function(error){
 				console.log("error:", error);
+				res.send(error);
 			});
 		}
 	},
